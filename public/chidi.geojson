@@ -1,0 +1,130 @@
+{
+  "type": "FeatureCollection",
+  "name": "hamish",
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "urn:ogc:def:crs:EPSG::7844"
+    }
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "title": "Kwesi Arthur",
+        "location": "Wingecarribee",
+        "img_url": null,
+        "audio": [
+          {
+            "type": "Recording",
+            "startdate": "2017-05-07 10:00AM",
+            "observation": "No Activity",
+            "mp3": "https://cms.soundingsoil.ch/content/uploads/2019/04/schaenis.mp3"
+          },
+          {
+            "type": "Recording",
+            "startdate": "2017-05-17 12:00PM",
+            "observation": "Bird Activity",
+            "mp3": "https://cms.soundingsoil.ch/content/uploads/2019/04/schaenis.mp3"
+          },
+          {
+            "type": "Recording",
+            "startdate": "2017-05-26 14:00PM",
+            "observation": "Worm Activity",
+            "mp3": "https://cms.soundingsoil.ch/content/uploads/2019/04/schaenis.mp3"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            150.42539938261893,
+            -34.380521739887776
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "title": "Kwesi Arthur",
+        "location": "Wingecarribee",
+        "img_url": null,
+        "audio": [
+          {
+            "type": "Recording",
+            "startdate": "2017-05-06 10:30AM",
+            "observation": "No Activity",
+            "mp3": "https://cms.soundingsoil.ch/content/uploads/2019/04/schaenis.mp3"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            150.62539,
+            -34.41955
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "title": "Hamish Diver",
+        "location": "Wingecarribee2",
+        "img_url": "https://static.wikia.nocookie.net/jurassicpark/images/e/ef/Owen_640x1204.jpg/revision/latest/top-crop/width/360/height/360?cb=20200807204032",
+        "audio": [
+          {
+            "type": "Live Stream",
+            "startdate": null,
+            "observation": null,
+            "mp3": "https://cms.soundingsoil.ch/content/uploads/2019/04/schaenis.mp3"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            150.87616,
+            -34.42954
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "title": "Mr T",
+        "location": "Wingecarribee3",
+        "img_url": "https://lh3.googleusercontent.com/e6PBGAIgp4UBlNKZYqXl0LU1hM_j2YHgY-aJDHzvTMe0R7_dJ9WkwKYIymQNHlyQqhHgM0hY2cx8G7rXrYug6KFWAfEbFuvo6aI2he2HjTdok_4O87r0C4mGeAj3=e365-rj-l80-w364",
+        "audio": [
+          {
+            "type": "Live Stream",
+            "startdate": null,
+            "observation": null,
+            "mp3": "https://cms.soundingsoil.ch/content/uploads/2019/04/schaenis.mp3"
+          },
+          {
+            "type": "Recording",
+            "startdate": "2017-05-01 9:00AM",
+            "observation": "Bug Activity",
+            "mp3": "https://cms.soundingsoil.ch/content/uploads/2019/04/schaenis.mp3"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [
+            150.41616,
+            -34.47373
+          ]
+        ]
+      }
+    }
+  ]
+}
