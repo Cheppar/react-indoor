@@ -8,7 +8,7 @@ import {
   LayersControl,
   Circle,
   FeatureGroup,
-  Popup
+  Popup,
 } from "react-leaflet";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
@@ -25,24 +25,21 @@ import {
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger,
-} from "@/components/ui/drawer"
+} from "@/components/ui/drawer";
 import DrawerSearchFiled from "./DrawerSearchFiled";
 import Searchplace from "./Searchplace";
 
-const myIcon = L.icon({
-  iconUrl: "/next.svg",
-  iconSize: [25, 42],
-  iconAnchor: [12.5, 41],
-  popupAnchor: [0, -41],
-});
+function getFirstThreeWords(text) {
+  if (!text) return '';
+  const words = text.split(' '); 
+  return words.slice(0, 3).join(' ');
+}
 
 const OsMap = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [center, setCenter] = useState({ lat: 13.086, lng: 80.24 });
   const [markers, setMarkers] = useState([]);
   const [zoomLevel, setZoomLevel] = useState(5);
- 
-  
 
   const handleMarkerClick = () => {
     setIsDrawerOpen(true);
@@ -65,8 +62,28 @@ const OsMap = () => {
         return newMarkers;
       });
       setIsDrawerOpen(false);
- 
     }
+  };
+
+  const MapContent = () => {
+    const map = useMap();
+
+    useEffect(() => {
+      if (markers.length > 0) {
+        const bounds = L.latLngBounds();
+
+        markers.forEach((marker) => {
+          bounds.extend([
+            [marker.lat + 0.001, marker.lng + 0.001], // Adding some leeway
+            [marker.lat - 0.001, marker.lng - 0.001],
+          ]);
+        });
+
+        map.fitBounds(bounds, { padding: [20, 20] });
+      }
+    }, [markers, map]);
+
+    return null; // No actual visual content
   };
 
   const apiKey =
@@ -87,37 +104,22 @@ const OsMap = () => {
           url="https://api.maptiler.com/maps/basic-v2/256/{z}/{x}/{y}.png?key=JpiQqy5cFkwz1ZdUczu7"
           attribution=""
         />
-       
+
         <LayersControl position="topright">
           <LayersControl.Overlay checked name="Marker">
-            <Marker
-              position={center}
-              icon={myIcon}
-              eventHandlers={{ click: handleMarkerClick }}
-            />
+          {markers.map((marker, index) => (
+          <Circle
+            key={index}
+            center={{ lat: marker.lat, lng: marker.lng }}
+            radius={100}
+          >
+            <Popup>{getFirstThreeWords(marker.label)}</Popup>
+          </Circle>
+        ))}
           </LayersControl.Overlay>
         </LayersControl>
 
-        {/* <FeatureGroup className='mt-100'>
-          <EditControl
-            position="topleft"
-            draw={{
-              rectangle: true,
-              circle: false,
-            }}
-          />
-        </FeatureGroup> */}
-
-        {markers.map((marker, index) => (
-        <Circle
-        key={index}
-        center={{ lat: marker.lat, lng: marker.lng }}
-        radius={100}
-      >
-            <Popup>{marker.label}</Popup>
-          </Circle>
-        ))}
-
+        
       </MapContainer>
 
       <Drawer open={isDrawerOpen} onOpenChange={setIsDrawerOpen}>
@@ -127,9 +129,9 @@ const OsMap = () => {
           </DrawerHeader>
           <DrawerSearchFiled onSearch={handleSearch} />
           <DrawerFooter>
-          <DrawerClose>
-        <Button variant="outline">Cancel</Button>
-      </DrawerClose>
+            <DrawerClose>
+              <Button variant="outline">Cancel</Button>
+            </DrawerClose>
           </DrawerFooter>
         </DrawerContent>
       </Drawer>
