@@ -14,6 +14,7 @@ import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import { Button } from "@/components/ui/button";
 import { Search } from "lucide-react";
+import DrawerSearchField from "./DrawerSearchFiled";
 
 import {
   Drawer,
@@ -38,9 +39,9 @@ function getFirstThreeWords(text) {
 
 const OsMap = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-  const [center, setCenter] = useState({ lat: 13.086, lng: 80.24 });
+  const [center, setCenter] = useState({ lat: 0.7798, lng: 37.7282 });
   const [markers, setMarkers] = useState([]);
-  const [zoomLevel, setZoomLevel] = useState(5);
+  const [zoomLevel, setZoomLevel] = useState(6);
 
   const handleMarkerClick = () => {
     setIsDrawerOpen(true);
@@ -91,14 +92,16 @@ const OsMap = () => {
     "pk.eyJ1IjoiY2hlcHBhciIsImEiOiJjbHU5bGE5eHUwNzd3MmpzOG50ZHhtZTdjIn0.mwEX_iE4dhE9b3P_9i7HIA";
 
   return (
-    <div className="relative">
-      <Button
+  
+    
+    <div className="relative fixed">
+      {/* <Button
         type="button"
         className="absolute top-2 left-2 z-50 text-white hover:bg-red-800"
         onClick={handleMarkerClick}
       >
         <Search />
-      </Button>
+      </Button> */}
 
       <MapContainer center={center} zoom={zoomLevel} zoomControl={false}>
         <TileLayer
@@ -141,6 +144,7 @@ const OsMap = () => {
         </DrawerContent>
       </Drawer>
     </div>
+   
   );
 };
 

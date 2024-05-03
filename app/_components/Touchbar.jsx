@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { SearchCheck ,LocateFixed , BadgeDollarSign, MapPin } from "lucide-react";
+import { SearchCheck ,LocateFixed , BadgeDollarSign, MapPin, Route } from "lucide-react";
 import {
   Drawer,
   DrawerContent,
@@ -50,8 +50,8 @@ const Touchbar = () => {
             value="password"
             onClick={() => openDrawerWithTab("buying")}
           >
-            <BadgeDollarSign className="mr-2" />
-            Buying
+           <Route className="mr-2" />
+            Routing
           </TabsTrigger>
         </TabsList>
       </Tabs>
@@ -62,8 +62,9 @@ const Touchbar = () => {
           <DrawerHeader>
             {selectedTab === "renting" && (
               <>
-                <DrawerTitle>Renting Details</DrawerTitle>
+                <DrawerTitle>Search</DrawerTitle>
                 <DrawerDescription>
+                  Type your location or address
                 <DrawerSearchField />
                 </DrawerDescription>
               </>
@@ -76,13 +77,13 @@ const Touchbar = () => {
                 </DrawerDescription>
                 <Button> 
                     <div className="mr-2"><LocateFixed /></div>
-                     Locate me</Button>
+                     Locate</Button>
               </>
             )}
             {selectedTab === "buying" && (
               <>
-                <DrawerTitle>Buying Details</DrawerTitle>
-                <DrawerDescription>Information about buying.</DrawerDescription>
+                <DrawerTitle>Routing Service</DrawerTitle>
+                <DrawerDescription>Route to your desired Apartment.</DrawerDescription>
               </>
             )}
           </DrawerHeader>
