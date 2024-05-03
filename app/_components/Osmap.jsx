@@ -14,8 +14,7 @@ import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import { Button } from "@/components/ui/button";
 import { Search } from "lucide-react";
-import { EditControl } from "react-leaflet-draw";
-import "leaflet-draw/dist/leaflet.draw.css";
+
 import {
   Drawer,
   DrawerClose,
@@ -28,6 +27,8 @@ import {
 } from "@/components/ui/drawer";
 import DrawerSearchFiled from "./DrawerSearchFiled";
 import Searchplace from "./Searchplace";
+import Touchbar from "./Touchbar";
+
 
 function getFirstThreeWords(text) {
   if (!text) return '';
@@ -118,9 +119,13 @@ const OsMap = () => {
         ))}
           </LayersControl.Overlay>
         </LayersControl>
-
-        
       </MapContainer>
+
+      <div className="absolute fixed w-full align-center">
+      <Touchbar />
+      </div>
+  
+      
 
       <Drawer open={isDrawerOpen} onOpenChange={setIsDrawerOpen}>
         <DrawerContent>

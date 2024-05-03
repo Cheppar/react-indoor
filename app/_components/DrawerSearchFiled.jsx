@@ -36,7 +36,8 @@ const DrawerSearchField = ({ onSearch }) => {
   };
 
   return (
-    <div className="relative px-2 py-2 h-[200px]">
+    <div className="relative px-2 py-2 h-[100px]">
+   
       <form onSubmit={handleSearch} className="flex items-center">
         <Input
           type="text"
