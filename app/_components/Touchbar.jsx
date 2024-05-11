@@ -12,10 +12,41 @@ import {
   DrawerClose,
 } from "@/components/ui/drawer";
 import DrawerSearchField from "./DrawerSearchFiled";
+import AddressSearch from "./AddressSearch";
 
 const Touchbar = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false); // State to control drawer open/closed state
   const [selectedTab, setSelectedTab] = useState(""); // State to track selected tab
+  const [query, setQuery] = useState("");
+  const [suggestions, setSuggestions] = useState([]);
+  
+
+  const handleInputChange = async (e) => {
+    const newQuery = e.target.value;
+    setQuery(newQuery);
+
+    if (newQuery.trim()) {
+      const results = await provider.search({ query: newQuery });
+      setSuggestions(results.slice(0, 5)); // Limit to top 5 suggestions
+    } else {
+      setSuggestions([]); // Clear suggestions if query is empty
+    }
+  };
+
+  const handleSearch = async (e) => {
+    e.preventDefault();
+    if (query.trim()) {
+      const results = await provider.search({ query });
+      onSearch(results); // Pass results to the parent component (e.g., OsMap)
+      console.log(results[0]);
+      setQuery("");
+    }
+  };
+
+  const handleSuggestionClick = (suggestion) => {
+    setQuery(suggestion.label); // Update the input with the selected suggestion
+    setSuggestions([]); // Clear the suggestions
+  };
 
   // Function to open the drawer and set the selected tab
   const openDrawerWithTab = (tab) => {
@@ -84,6 +115,11 @@ const Touchbar = () => {
               <>
                 <DrawerTitle>Routing Service</DrawerTitle>
                 <DrawerDescription>Route to your desired Apartment.</DrawerDescription>
+                <AddressSearch />
+                <div>
+                <Button className='flex justify-center items-center'><MapPin />Select on map</Button>
+                </div>
+                
               </>
             )}
           </DrawerHeader>

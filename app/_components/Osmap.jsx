@@ -41,7 +41,8 @@ const OsMap = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [center, setCenter] = useState({ lat: 0.7798, lng: 37.7282 });
   const [markers, setMarkers] = useState([]);
-  const [zoomLevel, setZoomLevel] = useState(6);
+  const [zoomLevel, setZoomLevel] = useState(7);
+  const [minZoom, setminZoom] = useState(7)
 
   const handleMarkerClick = () => {
     setIsDrawerOpen(true);
@@ -103,7 +104,7 @@ const OsMap = () => {
         <Search />
       </Button> */}
 
-      <MapContainer center={center} zoom={zoomLevel} zoomControl={false}>
+      <MapContainer center={center} zoom={zoomLevel} zoomControl={false} minZoom={minZoom}>
         <TileLayer
           url="https://api.maptiler.com/maps/basic-v2/256/{z}/{x}/{y}.png?key=JpiQqy5cFkwz1ZdUczu7"
           attribution=""
