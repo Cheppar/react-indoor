@@ -62,7 +62,7 @@ const AddressSearch = () => {
 
       </form>
       {suggestions.length > 0 && (
-        <ul className="absolute left-0 mt-2 bg-white border border-gray-300 rounded-md shadow-md">
+        <ul className="absolute left-0 mt-14 bg-white border border-gray-300 rounded-md shadow-md">
           {suggestions.map((suggestion, index) => (
             <li
               key={index}
