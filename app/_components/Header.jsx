@@ -15,7 +15,7 @@ const Header = () => {
         src={"/logo.svg"} 
         height={150} 
         width={150} 
-        alt="logo" 
+        alt="logo-Main" 
         />
 
 
@@ -36,8 +36,8 @@ const Header = () => {
       <div className="flex gap-2 items-center">
         {/* Button with icon-only on smaller screens */}
         <Button className="flex gap-2">
-          <Plus className="sm:hidden" /> {/* Icon-only for smaller screens */}
-          <span className="hidden sm:inline">Register</span> {/* Text appears on larger screens */}
+          <Plus className="sm:hidden" /> 
+          <span className="hidden sm:inline">Register</span> 
         </Button>
 
         <Button variant="outline" className="flex gap-2">
