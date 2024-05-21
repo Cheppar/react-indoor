@@ -16,6 +16,7 @@ const Header = () => {
         height={150} 
         width={150} 
         alt="logo-Main" 
+        priority={true}
         />
 
 
