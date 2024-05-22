@@ -21,7 +21,7 @@ const Header = () => {
 
 
         <ul className="hidden md:flex gap-10">
-            <Link href={'/'}> 
+            <Link href={'Register.jsx'}> 
             <li className="hover:text-primary font-medium text-sm cursor-pointer">Indoor</li>
             </Link>
          
@@ -29,7 +29,7 @@ const Header = () => {
           <li className="hover:text-primary font-medium text-sm cursor-pointer" >About</li>
           </Link>
 
-          <Link href={'/'}> 
+          <Link href={'/register'}> 
           <li className="hover:text-primary font-medium text-sm cursor-pointer" >Register</li>
           </Link>
         </ul>
