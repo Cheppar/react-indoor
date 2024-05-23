@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { OpenStreetMapProvider } from "leaflet-geosearch";
+import { GeocodeEarthProvider, OpenStreetMapProvider } from "leaflet-geosearch";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
 
-const DrawerSearchField = ({ onSearch }) => {
+const DrawerSearchField = ({ onSearch, selectedAddress, setCoordinates }) => {
   const [query, setQuery] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const provider = new OpenStreetMapProvider();
@@ -15,7 +15,17 @@ const DrawerSearchField = ({ onSearch }) => {
 
     if (newQuery.trim()) {
       const results = await provider.search({ query: newQuery });
-      setSuggestions(results.slice(0, 5)); // Limit to top 5 suggestions
+      selectedAddress(results.label)
+      console.log(results.label);
+      results.slice(0, 4).forEach(result => {
+        const lat = result.raw.lat;
+        const lon = result.raw.lon;
+        console.log(`Latitude: ${lat}, Longitude: ${lon}`);
+        setCoordinates({lat,lon})
+      });
+
+      setSuggestions(results.slice(0, 4)); // Limit to top 5 suggestions
+      
     } else {
       setSuggestions([]); // Clear suggestions if query is empty
     }

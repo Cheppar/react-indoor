@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, {useState} from "react";
 import DrawerSearchField from "@/app/_components/DrawerSearchFiled";
 
 import {
@@ -14,6 +14,13 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
 function AddNewListing() {
+const [selectedAddress, setSelectedAddress] = useState();
+const [coordinates, setCoordinates ] = useState()
+
+const nextHandler =()=> {
+  console.log(selectedAddress, coordinates)
+}
+
   return (
     <div className="p-10 flex flex-col mt-10 gap-5 items-center justify-center">
       <div>
@@ -28,7 +35,10 @@ function AddNewListing() {
             <form>
               <div className="grid w-full items-center gap-4">
                 <div className="flex flex-col space-y-1.5">
-                  <DrawerSearchField />
+                  <DrawerSearchField
+                  selectedAddress={(value)=>setSelectedAddress(value)}
+                  setCoordinates={(value)=>setCoordinates(value)}
+                  />
                 </div>
                 <div className="flex flex-col space-y-1.5"></div>
               </div>
@@ -36,7 +46,9 @@ function AddNewListing() {
 
             <CardFooter className="flex justify-between">
           <Button variant="outline">Cancel</Button>
-            <Button>Next</Button>
+            <Button
+            onClick={nextHandler}
+            >Next</Button>
           </CardFooter>
            
           </CardContent>

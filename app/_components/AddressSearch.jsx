@@ -35,6 +35,7 @@ const AddressSearch = () => {
   const handleSuggestionClick = (suggestion) => {
     setQuery(suggestion.label); // Update the input with the selected suggestion
     setSuggestions([]); // Clear the suggestions
+    console.log(results)
   };
 
   return (
