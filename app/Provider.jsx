@@ -10,7 +10,7 @@ const Provider = ({ children }) => {
 
       <div className="items-center">
       <Header />
-      <DrawerSearchField />
+      
         {children}
         </div>
     </div>

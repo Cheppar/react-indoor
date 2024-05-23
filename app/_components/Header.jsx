@@ -29,7 +29,7 @@ const Header = () => {
           <li className="hover:text-primary font-medium text-sm cursor-pointer" >About</li>
           </Link>
 
-          <Link href={'/register'}> 
+          <Link href={'/add-new-listing'}> 
           <li className="hover:text-primary font-medium text-sm cursor-pointer" >Register</li>
           </Link>
         </ul>

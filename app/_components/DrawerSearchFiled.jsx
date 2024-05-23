@@ -37,7 +37,7 @@ const DrawerSearchField = ({ onSearch }) => {
   };
 
   return (
-    <div className=" w-full flex justify-center items-center py-10 px-1 mt-4">
+    <div className=" w-full flex justify-center items-center mt-4">
    
       <form onSubmit={handleSearch} className="flex justify-center relative">
         <Input
@@ -57,22 +57,24 @@ const DrawerSearchField = ({ onSearch }) => {
             <Search size={16} /> {/* Using a search icon */}
           </Button>
         </div>
-        
 
-      </form>
-      {suggestions.length > 0 && (
+        <div className="mt-10"> 
+ {suggestions.length > 0 && (
         <ul className="absolute left-0 mt-2 bg-white border border-gray-300 rounded-md shadow-md">
           {suggestions.map((suggestion, index) => (
             <li
               key={index}
               onClick={() => handleSuggestionClick(suggestion)}
-              className="px-4 py-2 cursor-pointer hover:bg-gray-100"
+              className="px-4 py-2 mt-2 cursor-pointer hover:bg-gray-100"
             >
               {suggestion.label}
             </li>
           ))}
         </ul>
       )}
+      </div>
+      </form>
+     
     </div>
   );
 };
