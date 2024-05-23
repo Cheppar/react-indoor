@@ -19,7 +19,7 @@ function AddNewListing() {
       <div>
         <Card className="w-[350px]">
           <CardHeader>
-            <CardTitle className='flex justify-center items-center' >Create Client Listing</CardTitle>
+            <CardTitle className='flex justify-center items-center' >Create Profile</CardTitle>
             <CardDescription className='flex justify-center items-center'>
               Where does your client reside?
             </CardDescription>
@@ -33,12 +33,14 @@ function AddNewListing() {
                 <div className="flex flex-col space-y-1.5"></div>
               </div>
             </form>
+
+            <CardFooter className="flex justify-between">
+          <Button variant="outline">Cancel</Button>
+            <Button>Next</Button>
+          </CardFooter>
            
           </CardContent>
-          <CardFooter className="flex items-center gap-10">
-          <Button variant="outline">Cancel</Button>
-            <Button>Deploy</Button>
-          </CardFooter>
+          
         </Card>
       </div>
     </div>
