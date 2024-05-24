@@ -47,6 +47,7 @@ const nextHandler =()=> {
             <CardFooter className="flex justify-between">
           <Button variant="outline">Cancel</Button>
             <Button
+            disabled={!selectedAddress || !coordinates }
             onClick={nextHandler}
             >Next</Button>
           </CardFooter>
