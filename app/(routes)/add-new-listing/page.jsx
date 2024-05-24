@@ -14,6 +14,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { supabase } from "@/utils/supabase/client";
 import { useUser } from "@clerk/nextjs";
+import { toast } from "sonner";
 
 function AddNewListing() {
   const [selectedAddress, setSelectedAddress] = useState();
@@ -33,13 +34,15 @@ function AddNewListing() {
       ])
       .select();
 
-      if (data) 
-      {
-        console.log('New Data Added', data);
-      } 
-      if(error){
-        console.log(error);
-      }
+    if (data) {
+      console.log("New Data Added", data);
+      toast("New listing added");
+    
+    }
+    if (error) {
+      console.log(error);
+      toast(error)
+    }
   };
 
   return (
@@ -79,6 +82,7 @@ function AddNewListing() {
           </CardContent>
         </Card>
       </div>
+      
     </div>
   );
 }
