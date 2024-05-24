@@ -15,13 +15,15 @@ import { Button } from "@/components/ui/button";
 import { supabase } from "@/utils/supabase/client";
 import { useUser } from "@clerk/nextjs";
 import { toast } from "sonner";
+import { Loader } from "lucide-react";
 
 function AddNewListing() {
   const [selectedAddress, setSelectedAddress] = useState();
   const [coordinates, setCoordinates] = useState();
-  
+  const [loader, setLoader] = useState(false)
 
   const nextHandler = async () => {
+    setLoader(true);
     console.log(selectedAddress, coordinates);
     const { data, error } = await supabase
       .from("listing")
@@ -35,11 +37,13 @@ function AddNewListing() {
       .select();
 
     if (data) {
+      setLoader(false)
       console.log("New Data Added", data);
       toast("New listing added");
     
     }
     if (error) {
+      setLoader(false)
       console.log(error);
       toast(error)
     }
@@ -73,10 +77,11 @@ function AddNewListing() {
             <CardFooter className="flex justify-between">
               <Button variant="outline">Cancel</Button>
               <Button
-                disabled={!selectedAddress || !coordinates}
+                disabled={!selectedAddress || !coordinates || loader}
                 onClick={nextHandler}
               >
-                Next
+                {loader?<Loader className="animate-spin" />:'Next'}
+              
               </Button>
             </CardFooter>
           </CardContent>
