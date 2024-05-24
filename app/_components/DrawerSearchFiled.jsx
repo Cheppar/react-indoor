@@ -15,16 +15,15 @@ const DrawerSearchField = ({ onSearch, selectedAddress, setCoordinates }) => {
 
     if (newQuery.trim()) {
       const results = await provider.search({ query: newQuery });
-      console.log(results[0].label)
-      
-    
       results.slice(0, 4).forEach(result => {
         const lat = result.raw.lat;
         const lon = result.raw.lon;
-        const venue = results[0].label
+        const addressParts = result.label.split(',');
+        const venue = addressParts.slice(0, 3).join(', ').trim();
         console.log(`Latitude: ${lat}, Longitude: ${lon}`);
         setCoordinates({lat,lon})
-        selectedAddress({venue})
+        const formattedAddress = venue;
+        selectedAddress(formattedAddress);
       });
 
       setSuggestions(results.slice(0, 4)); // Limit to top 5 suggestions
