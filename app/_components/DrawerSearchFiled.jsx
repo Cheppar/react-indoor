@@ -49,7 +49,7 @@ const DrawerSearchField = ({ onSearch, selectedAddress, setCoordinates }) => {
   };
 
   return (
-    <div className=" w-full flex justify-center items-center mt-4">
+    <div className=" w-full flex justify-center items-center">
    
       <form onSubmit={handleSearch} className="flex justify-center relative">
         <Input

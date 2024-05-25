@@ -17,6 +17,8 @@ import { useUser } from "@clerk/nextjs";
 import { toast } from "sonner";
 import { Loader } from "lucide-react";
 
+
+
 function AddNewListing() {
   const [selectedAddress, setSelectedAddress] = useState();
   const [coordinates, setCoordinates] = useState();
@@ -55,7 +57,7 @@ function AddNewListing() {
         <Card className="w-[350px]">
           <CardHeader>
             <CardTitle className="flex justify-center items-center">
-              Create Profile
+              Probationer Residence
             </CardTitle>
             <CardDescription className="flex justify-center items-center">
               Where does your client reside?
@@ -64,11 +66,14 @@ function AddNewListing() {
           <CardContent>
             <form>
               <div className="grid w-full items-center gap-4">
-                <div className="flex flex-col space-y-1.5">
+                <div className="flex flex-col space-y-1">
                   <DrawerSearchField
                     selectedAddress={(value) => setSelectedAddress(value)}
                     setCoordinates={(value) => setCoordinates(value)}
                   />
+                  
+                  
+                  
                 </div>
                 <div className="flex flex-col space-y-1.5"></div>
               </div>
@@ -80,7 +85,7 @@ function AddNewListing() {
                 disabled={!selectedAddress || !coordinates || loader}
                 onClick={nextHandler}
               >
-                {loader?<Loader className="animate-spin" />:'Next'}
+                {loader?<Loader className="animate-spin"/>:'Next'}
               
               </Button>
             </CardFooter>
