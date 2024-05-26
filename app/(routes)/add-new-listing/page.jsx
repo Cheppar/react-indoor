@@ -1,7 +1,7 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import DrawerSearchField from "@/app/_components/DrawerSearchFiled";
-
+import Image from "next/image";
 import {
   Card,
   CardContent,
@@ -18,11 +18,28 @@ import { toast } from "sonner";
 import { Loader } from "lucide-react";
 
 
-
 function AddNewListing() {
   const [selectedAddress, setSelectedAddress] = useState();
   const [coordinates, setCoordinates] = useState();
   const [loader, setLoader] = useState(false)
+  const [shouldSpin, setShouldSpin] = useState(false);
+  const [stopSpin, setStopSpin] = useState(false);
+
+  useEffect(() => {
+    const startSpinTimer = setTimeout(() => {
+      setShouldSpin(true); // Start spinning after 30 seconds
+    }, 10000);
+
+    const stopSpinTimer = setTimeout(() => {
+      setShouldSpin(false); // Stop spinning after 60 seconds (30 seconds of spinning)
+      setStopSpin(true); // To ensure it doesn't spin again
+    }, 2000);
+
+    return () => {
+      clearTimeout(startSpinTimer); // Clean up the start spin timer on component unmount
+      clearTimeout(stopSpinTimer); // Clean up the stop spin timer on component unmount
+    };
+  }, []);
 
   const nextHandler = async () => {
     setLoader(true);
@@ -41,7 +58,12 @@ function AddNewListing() {
     if (data) {
       setLoader(false)
       console.log("New Data Added", data);
-      toast("New listing added");
+      toast.success('Entry created', {
+        action: {
+          label: 'dismiss',
+          onClick: () => console.log('Cleared')
+        },
+      })
     
     }
     if (error) {
@@ -72,8 +94,7 @@ function AddNewListing() {
                     setCoordinates={(value) => setCoordinates(value)}
                   />
                   
-                  
-                  
+                   
                 </div>
                 <div className="flex flex-col space-y-1.5"></div>
               </div>
@@ -92,7 +113,16 @@ function AddNewListing() {
           </CardContent>
         </Card>
       </div>
-      
+     
+      <div className={`flex justify-center ${shouldSpin && !stopSpin ? 'animate-spin' : ''}`}>
+      <Image 
+        src={"/next.svg"} 
+        height={150} 
+        width={150} 
+        alt="logo-Main" 
+        priority={true}
+        />
+        </div>
     </div>
   );
 }
