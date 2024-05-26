@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState , useEffect} from "react";
 import {
   useMap,
   MapContainer,
@@ -7,7 +7,7 @@ import {
   TileLayer,
   LayersControl,
   Circle,
-  FeatureGroup,
+  FeatureGroup, 
   Popup,
 } from "react-leaflet";
 import L from "leaflet";
@@ -15,6 +15,9 @@ import "leaflet/dist/leaflet.css";
 import { Button } from "@/components/ui/button";
 import { Search } from "lucide-react";
 import DrawerSearchField from "./DrawerSearchFiled";
+import '../../public/css/leaflet.css'
+import '../../public/js/leaflet-indoor'
+import data from '../../public/data/data.geojson'
 
 import {
   Drawer,
@@ -42,7 +45,7 @@ const OsMap = () => {
   const [center, setCenter] = useState({ lat: 0.7798, lng: 37.7282 });
   const [markers, setMarkers] = useState([]);
   const [zoomLevel, setZoomLevel] = useState(7);
-  const [minZoom, setminZoom] = useState(7)
+  const [minZoom, setminZoom] = useState(1)
 
   const handleMarkerClick = () => {
     setIsDrawerOpen(true);
@@ -86,8 +89,30 @@ const OsMap = () => {
       }
     }, [markers, map]);
 
+    useEffect(() => {
+      // Create indoor layer
+      const indoorLayer = new L.Indoor(data);
+      indoorLayer.addTo(map);
+  
+      // Create level control
+      const levelControl = new L.Control.Level({
+        level: "0",
+        levels: indoorLayer.getLevels()
+      });
+      levelControl.addEventListener("levelchange", indoorLayer.setLevel, indoorLayer);
+      levelControl.addTo(map);
+  
+      // Cleanup function
+      return () => {
+        map.removeLayer(indoorLayer);
+        map.removeControl(levelControl);
+      };
+    }, [map]);
+
     return null; // No actual visual content
   };
+
+  
 
   const apiKey =
     "pk.eyJ1IjoiY2hlcHBhciIsImEiOiJjbHU5bGE5eHUwNzd3MmpzOG50ZHhtZTdjIn0.mwEX_iE4dhE9b3P_9i7HIA";
@@ -123,6 +148,8 @@ const OsMap = () => {
         ))}
           </LayersControl.Overlay>
         </LayersControl>
+
+        <MapContent />
       </MapContainer>
 
       <div className="absolute fixed w-full align-center">
