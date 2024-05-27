@@ -15,9 +15,7 @@ import "leaflet/dist/leaflet.css";
 import { Button } from "@/components/ui/button";
 import { Search } from "lucide-react";
 import DrawerSearchField from "./DrawerSearchFiled";
-import '../../public/css/leaflet.css'
-import '../../public/js/leaflet-indoor'
-import data from '../../public/data/data.geojson'
+
 
 import {
   Drawer,
