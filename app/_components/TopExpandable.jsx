@@ -64,7 +64,6 @@ const components = [
 
 function TopExpandable() {
   return (
-   
       <NavigationMenu>
         <NavigationMenuList>
           <NavigationMenuItem>
@@ -75,16 +74,9 @@ function TopExpandable() {
               </ul>
             </NavigationMenuContent>
           </NavigationMenuItem>
+          
           <NavigationMenuItem>
-            <NavigationMenuTrigger>Developer</NavigationMenuTrigger>
-            <NavigationMenuContent>
-              <ul className="grid w-[200px] h-[200px] gap-3 p-4 md:w-[200px] md:grid-cols-2 lg:w-[300px] ">
-                <ComboInHeader />
-              </ul>
-            </NavigationMenuContent>
-          </NavigationMenuItem>
-          <NavigationMenuItem>
-            <Link href="/docs" legacyBehavior passHref>
+            <Link href="/" legacyBehavior passHref>
               <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                 Documentation
               </NavigationMenuLink>
