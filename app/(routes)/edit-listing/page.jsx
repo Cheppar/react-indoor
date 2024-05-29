@@ -2,7 +2,7 @@ import React from 'react'
 
 function EditListing () {
   return (
-    <div>page</div>
+    <div className='mt-50'>page</div>
   )
 }
 
