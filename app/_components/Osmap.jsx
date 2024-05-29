@@ -87,25 +87,7 @@ const OsMap = () => {
       }
     }, [markers, map]);
 
-    useEffect(() => {
-      // Create indoor layer
-      const indoorLayer = new L.Indoor(data);
-      indoorLayer.addTo(map);
   
-      // Create level control
-      const levelControl = new L.Control.Level({
-        level: "0",
-        levels: indoorLayer.getLevels()
-      });
-      levelControl.addEventListener("levelchange", indoorLayer.setLevel, indoorLayer);
-      levelControl.addTo(map);
-  
-      // Cleanup function
-      return () => {
-        map.removeLayer(indoorLayer);
-        map.removeControl(levelControl);
-      };
-    }, [map]);
 
     return null; // No actual visual content
   };
