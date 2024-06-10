@@ -8,7 +8,7 @@ const ListingMapView = () => {
     <div>
      
       <OsMap />
-      <Register/>
+      
    
     </div>
   )

@@ -13,9 +13,9 @@ import {
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import { Button } from "@/components/ui/button";
-import { Search } from "lucide-react";
-import DrawerSearchField from "./DrawerSearchFiled";
-
+import Script from 'next/script';
+import $ from "jquery";
+import "leaflet-indoor/leaflet-indoor.js"; // Adjust the path as needed
 
 import {
   Drawer,
@@ -101,14 +101,7 @@ const OsMap = () => {
   
     
     <div className="relative fixed">
-      {/* <Button
-        type="button"
-        className="absolute top-2 left-2 z-50 text-white hover:bg-red-800"
-        onClick={handleMarkerClick}
-      >
-        <Search />
-      </Button> */}
-
+     
       <MapContainer center={center} zoom={zoomLevel} zoomControl={false} minZoom={minZoom}>
         <TileLayer
           url="https://api.maptiler.com/maps/basic-v2/256/{z}/{x}/{y}.png?key=JpiQqy5cFkwz1ZdUczu7"
